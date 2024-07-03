@@ -60,11 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Hide loading animation
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
-    });
-
     // Fetch Google Sheets data and load gallery
     function fetchGalleryData() {
         const sheetId = '18R2GoOAPbXtAq45OXKjlYyW4vLi5FS9lqhkw4B5XQtc';
