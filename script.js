@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const friendsOnlySection = document.getElementById('friends-only-section');
     const friendsOnlyForm = document.getElementById('friends-only-form');
     const pinInput = document.getElementById('pin-input');
+    const friendsPostForm = document.getElementById('friends-post-form');
+    const friendsPostContent = document.getElementById('friends-post-content');
+    const submitFriendsPostBtn = document.getElementById('submit-friends-post');
 
     friendsOnlyBtn.addEventListener('click', () => {
         friendsOnlySection.style.display = 'block';
@@ -19,10 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         if (pinInput.value === '696420') {
             friendsOnlySection.style.display = 'none';
-            alert('Access granted');
-            // Add logic to display friends-only posts submission form or area
+            friendsPostForm.style.display = 'block';
         } else {
             alert('Invalid PIN');
+        }
+    });
+
+    submitFriendsPostBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const postContent = friendsPostContent.value;
+
+        if (postContent.trim() !== "") {
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+            postElement.innerText = postContent;
+            postContainer.appendChild(postElement);
+
+            friendsPostContent.value = "";
         }
     });
 
@@ -72,15 +88,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     postForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const postContent = document.getElementById('post-content').value;
 
-        if (postContent.trim() !== "") {
+        const name = document.getElementById('post-name').value;
+        const email = document.getElementById('post-email').value;
+        const displayEmail = document.getElementById('email-opt-in').checked;
+        const content = document.getElementById('post-content').value;
+        const mediaFile = document.getElementById('post-media').files[0];
+
+        if (content.trim() !== "") {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
-            postElement.innerText = postContent;
-            postContainer.appendChild(postElement);
 
-            document.getElementById('post-content').value = "";
+            const nameElement = document.createElement('h3');
+            nameElement.innerText = name;
+            postElement.appendChild(nameElement);
+
+            if (displayEmail && email.trim() !== "") {
+                const emailElement = document.createElement('p');
+                emailElement.innerText = email;
+                postElement.appendChild(emailElement);
+            }
+
+            const contentElement = document.createElement('p');
+            contentElement.innerText = content;
+            postElement.appendChild(contentElement);
+
+            if (mediaFile) {
+                const mediaElement = document.createElement(mediaFile.type.startsWith('image/') ? 'img' : 'video');
+                mediaElement.src = URL.createObjectURL(mediaFile);
+                if (mediaFile.type.startsWith('video/')) {
+                    mediaElement.controls = true;
+                }
+                postElement.appendChild(mediaElement);
+            }
+
+            postContainer.appendChild(postElement);
+            postForm.reset();
         }
     });
 });

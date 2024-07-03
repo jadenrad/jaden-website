@@ -51,9 +51,8 @@ header {
     margin-bottom: 20px;
 }
 
-.posts textarea {
+.posts textarea, .posts input[type="text"], .posts input[type="email"], .posts input[type="file"] {
     width: 80%;
-    height: 100px;
     margin: 10px 0;
     padding: 10px;
     font-size: 16px;
@@ -81,6 +80,11 @@ header {
 .post {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
+}
+
+.post img, .post video {
+    max-width: 100%;
+    height: auto;
 }
 
 .spotify-dashboard {
