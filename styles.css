@@ -149,3 +149,13 @@ html {
 body.loaded #loading {
     display: none;
 }
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game iframe {
+    margin-top: 10px;
+}
