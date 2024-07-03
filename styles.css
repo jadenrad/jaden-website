@@ -1,3 +1,5 @@
+/* Add this to styles.css */
+
 body {
     font-family: 'Playfair Display', serif;
     background-color: white;
@@ -43,6 +45,42 @@ header {
 .posts, .spotify-dashboard, .contact {
     padding: 20px;
     text-align: center;
+}
+
+.posts form {
+    margin-bottom: 20px;
+}
+
+.posts textarea {
+    width: 80%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.posts button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.posts button:hover {
+    background-color: red;
+}
+
+#post-container {
+    text-align: left;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.post {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
 
 .spotify-dashboard {

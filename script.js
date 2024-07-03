@@ -65,4 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
     });
+
+    // Handle post submissions
+    const postForm = document.getElementById('post-form');
+    const postContainer = document.getElementById('post-container');
+
+    postForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const postContent = document.getElementById('post-content').value;
+
+        if (postContent.trim() !== "") {
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+            postElement.innerText = postContent;
+            postContainer.appendChild(postElement);
+
+            document.getElementById('post-content').value = "";
+        }
+    });
 });
