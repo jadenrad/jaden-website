@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchGalleryData() {
         const sheetId = '18R2GoOAPbXtAq45OXKjlYyW4vLi5FS9lqhkw4B5XQtc';
         const sheetName = 'Form Responses 1';
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=YOUR_API_KEY`;
+        const apiKey = 'YOUR_API_KEY';
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=${apiKey}`;
 
         fetch(url)
             .then(response => response.json())
