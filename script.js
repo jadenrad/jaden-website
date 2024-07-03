@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const friendsPostForm = document.getElementById('friends-post-form');
     const friendsPostContent = document.getElementById('friends-post-content');
     const submitFriendsPostBtn = document.getElementById('submit-friends-post');
+    const postForm = document.getElementById('post-form');
+    const postContainer = document.getElementById('post-container');
 
     friendsOnlyBtn.addEventListener('click', () => {
         friendsOnlySection.style.display = 'block';
@@ -21,10 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     friendsOnlyForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (pinInput.value === '696420') {
-            friendsOnlySection.style.display = 'none';
+            friendsOnlyForm.style.display = 'none';
             friendsPostForm.style.display = 'block';
+            alert('access granted');
         } else {
-            alert('Invalid PIN');
+            alert('invalid pin');
         }
     });
 
@@ -83,9 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle post submissions
-    const postForm = document.getElementById('post-form');
-    const postContainer = document.getElementById('post-container');
-
     postForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -124,6 +124,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
             postContainer.appendChild(postElement);
             postForm.reset();
+
+            // Save post to localStorage
+            savePost({
+                name: name,
+                email: displayEmail ? email : '',
+                content: content,
+                media: mediaFile ? {
+                    src: mediaElement.src,
+                    type: mediaFile.type
+                } : null
+            });
         }
     });
+
+    // Load posts from localStorage
+    loadPosts();
+
+    function savePost(post) {
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.push(post);
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }
+
+    function loadPosts() {
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+
+            const nameElement = document.createElement('h3');
+            nameElement.innerText = post.name;
+            postElement.appendChild(nameElement);
+
+            if (post.email) {
+                const emailElement = document.createElement('p');
+                emailElement.innerText = post.email;
+                postElement.appendChild(emailElement);
+            }
+
+            const contentElement = document.createElement('p');
+            contentElement.innerText = post.content;
+            postElement.appendChild(contentElement);
+
+            if (post.media) {
+                const mediaElement = document.createElement(post.media.type.startsWith('image/') ? 'img' : 'video');
+                mediaElement.src = post.media.src;
+                if (post.media.type.startsWith('video/')) {
+                    mediaElement.controls = true;
+                }
+                postElement.appendChild(mediaElement);
+            }
+
+            postContainer.appendChild(postElement);
+        });
+    }
 });
