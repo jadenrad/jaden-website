@@ -18,48 +18,41 @@
             <a href="https://tiktok.com/@jadenstacks">tiktok</a>
         </div>
     </header>
-    <div class="posts">
-        <h2>posts</h2>
-        <form id="post-form">
-            <input type="text" id="post-name" placeholder="your name" required>
-            <input type="email" id="post-email" placeholder="your email (optional)">
-            <input type="checkbox" id="email-opt-in"> display email
-            <textarea id="post-content" placeholder="write your post here..." required></textarea>
-            <input type="file" id="post-media" accept="image/*,video/*">
-            <button type="submit">post</button>
-        </form>
-        <div id="post-container">
-            <!-- User posts will appear here -->
+
+    <div class="animated-background"></div>
+
+    <section class="gallery">
+        <h2>gallery</h2>
+        <div id="gallery-grid" class="gallery-grid">
+            <!-- Gallery images will be loaded here -->
         </div>
-    </div>
-    <div class="spotify-dashboard">
-        <h2>currently listening</h2>
-        <iframe src="https://open.spotify.com/embed/playlist/0g9jm0iJeohBYVdAWMMIln" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
-    <div class="spotify-dashboard">
-        <h2>recently played</h2>
-        <!-- Add recently played Spotify widget here if needed -->
-    </div>
-    <div class="contact">
+    </section>
+
+    <section class="social-feeds">
+        <h2>social media feeds</h2>
+        <div class="feeds-container">
+            <!-- Add social media feed widgets here -->
+        </div>
+    </section>
+
+    <section class="contact">
         <h2>contact</h2>
-        <form>
+        <form id="contact-form">
             <input type="text" name="name" placeholder="your name">
             <input type="email" name="email" placeholder="your email">
             <textarea name="message" placeholder="your message"></textarea>
             <button type="submit">send</button>
         </form>
-    </div>
+    </section>
+
     <button id="friends-only-btn">friends only</button>
     <div id="friends-only-section" style="display:none;">
         <form id="friends-only-form">
             <input type="password" id="pin-input" placeholder="enter pin">
             <button type="submit">submit</button>
         </form>
-        <div id="friends-post-form" style="display:none;">
-            <textarea id="friends-post-content" placeholder="write your friends-only post here..."></textarea>
-            <button id="submit-friends-post">post</button>
-        </div>
     </div>
+
     <div id="loading" class="loader"></div>
     <div class="visitor-counter">visitors: <span id="visitor-count">0</span></div>
     <script src="script.js"></script>

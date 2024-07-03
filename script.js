@@ -10,11 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const friendsOnlySection = document.getElementById('friends-only-section');
     const friendsOnlyForm = document.getElementById('friends-only-form');
     const pinInput = document.getElementById('pin-input');
-    const friendsPostForm = document.getElementById('friends-post-form');
-    const friendsPostContent = document.getElementById('friends-post-content');
-    const submitFriendsPostBtn = document.getElementById('submit-friends-post');
-    const postForm = document.getElementById('post-form');
-    const postContainer = document.getElementById('post-container');
 
     friendsOnlyBtn.addEventListener('click', () => {
         friendsOnlySection.style.display = 'block';
@@ -24,24 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         if (pinInput.value === '696420') {
             friendsOnlyForm.style.display = 'none';
-            friendsPostForm.style.display = 'block';
             alert('access granted');
         } else {
             alert('invalid pin');
-        }
-    });
-
-    submitFriendsPostBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const postContent = friendsPostContent.value;
-
-        if (postContent.trim() !== "") {
-            const postElement = document.createElement('div');
-            postElement.classList.add('post');
-            postElement.innerText = postContent;
-            postContainer.appendChild(postElement);
-
-            friendsPostContent.value = "";
         }
     });
 
@@ -85,98 +65,33 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('loaded');
     });
 
-    // Handle post submissions
-    postForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // Fetch Google Sheets data and load gallery
+    function fetchGalleryData() {
+        const sheetId = '18R2GoOAPbXtAq45OXKjlYyW4vLi5FS9lqhkw4B5XQtc';
+        const sheetName = 'Form Responses 1';
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=YOUR_API_KEY`;
 
-        const name = document.getElementById('post-name').value;
-        const email = document.getElementById('post-email').value;
-        const displayEmail = document.getElementById('email-opt-in').checked;
-        const content = document.getElementById('post-content').value;
-        const mediaFile = document.getElementById('post-media').files[0];
-
-        if (content.trim() !== "") {
-            const postElement = document.createElement('div');
-            postElement.classList.add('post');
-
-            const nameElement = document.createElement('h3');
-            nameElement.innerText = name;
-            postElement.appendChild(nameElement);
-
-            if (displayEmail && email.trim() !== "") {
-                const emailElement = document.createElement('p');
-                emailElement.innerText = email;
-                postElement.appendChild(emailElement);
-            }
-
-            const contentElement = document.createElement('p');
-            contentElement.innerText = content;
-            postElement.appendChild(contentElement);
-
-            if (mediaFile) {
-                const mediaElement = document.createElement(mediaFile.type.startsWith('image/') ? 'img' : 'video');
-                mediaElement.src = URL.createObjectURL(mediaFile);
-                if (mediaFile.type.startsWith('video/')) {
-                    mediaElement.controls = true;
-                }
-                postElement.appendChild(mediaElement);
-            }
-
-            postContainer.appendChild(postElement);
-            postForm.reset();
-
-            // Save post to localStorage
-            savePost({
-                name: name,
-                email: displayEmail ? email : '',
-                content: content,
-                media: mediaFile ? {
-                    src: mediaElement.src,
-                    type: mediaFile.type
-                } : null
-            });
-        }
-    });
-
-    // Load posts from localStorage
-    loadPosts();
-
-    function savePost(post) {
-        const posts = JSON.parse(localStorage.getItem('posts')) || [];
-        posts.push(post);
-        localStorage.setItem('posts', JSON.stringify(posts));
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const rows = data.values.slice(1); // Skip header row
+                const galleryGrid = document.getElementById('gallery-grid');
+                rows.forEach(row => {
+                    const [timestamp, title, description, imageUrl] = row;
+                    const galleryItem = document.createElement('div');
+                    galleryItem.classList.add('gallery-item');
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = title;
+                    galleryItem.appendChild(img);
+                    const heartButton = document.createElement('div');
+                    heartButton.classList.add('heart-button');
+                    galleryItem.appendChild(heartButton);
+                    galleryGrid.appendChild(galleryItem);
+                });
+            })
+            .catch(error => console.error('Error fetching gallery data:', error));
     }
 
-    function loadPosts() {
-        const posts = JSON.parse(localStorage.getItem('posts')) || [];
-        posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.classList.add('post');
-
-            const nameElement = document.createElement('h3');
-            nameElement.innerText = post.name;
-            postElement.appendChild(nameElement);
-
-            if (post.email) {
-                const emailElement = document.createElement('p');
-                emailElement.innerText = post.email;
-                postElement.appendChild(emailElement);
-            }
-
-            const contentElement = document.createElement('p');
-            contentElement.innerText = post.content;
-            postElement.appendChild(contentElement);
-
-            if (post.media) {
-                const mediaElement = document.createElement(post.media.type.startsWith('image/') ? 'img' : 'video');
-                mediaElement.src = post.media.src;
-                if (post.media.type.startsWith('video/')) {
-                    mediaElement.controls = true;
-                }
-                postElement.appendChild(mediaElement);
-            }
-
-            postContainer.appendChild(postElement);
-        });
-    }
+    fetchGalleryData();
 });
