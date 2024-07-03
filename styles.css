@@ -58,39 +58,7 @@ header {
     100% { background-position: 0% 50%; }
 }
 
-.gallery {
-    padding: 20px;
-    text-align: center;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-}
-
-.gallery-item {
-    position: relative;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.heart-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 25px;
-    height: 25px;
-    background: url('images/heart.png') no-repeat center center;
-    background-size: contain;
-    cursor: pointer;
-}
-
-.social-feeds, .contact {
+.spotify {
     padding: 20px;
     text-align: center;
 }

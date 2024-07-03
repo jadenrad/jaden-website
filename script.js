@@ -60,34 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fetch Google Sheets data and load gallery
-    function fetchGalleryData() {
-        const sheetId = '18R2GoOAPbXtAq45OXKjlYyW4vLi5FS9lqhkw4B5XQtc';
-        const sheetName = 'Form Responses 1';
-        const apiKey = 'YOUR_API_KEY';
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=${apiKey}`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const rows = data.values.slice(1); // Skip header row
-                const galleryGrid = document.getElementById('gallery-grid');
-                rows.forEach(row => {
-                    const [timestamp, title, description, imageUrl] = row;
-                    const galleryItem = document.createElement('div');
-                    galleryItem.classList.add('gallery-item');
-                    const img = document.createElement('img');
-                    img.src = imageUrl;
-                    img.alt = title;
-                    galleryItem.appendChild(img);
-                    const heartButton = document.createElement('div');
-                    heartButton.classList.add('heart-button');
-                    galleryItem.appendChild(heartButton);
-                    galleryGrid.appendChild(galleryItem);
-                });
-            })
-            .catch(error => console.error('Error fetching gallery data:', error));
-    }
-
-    fetchGalleryData();
+    // Hide loading animation
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
 });
