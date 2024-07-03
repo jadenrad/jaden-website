@@ -1,171 +1,176 @@
 body {
-  font-family: 'Playfair Display', serif;
-  background-color: white;
-  color: black;
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+    font-family: 'Playfair Display', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
-  text-align: center;
-  padding: 20px;
-  background-color: white;
-  color: black;
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    color: black;
+    border-bottom: 2px solid #ddd;
 }
 
 .profile-pic {
-  border: 2px solid black;
-  border-radius: 50%;
-  width: 150px;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px;
 }
 
 .verified-badge {
-  color: red;
+    color: red;
 }
 
 .social-media-icons a {
-  color: black;
-  margin: 0 10px;
-  text-decoration: none;
-  transition: color 0.3s;
+    color: black;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
 .social-media-icons a:hover {
-  color: red;
+    color: red;
 }
 
-.posts {
-  padding: 20px;
+.posts, .spotify-dashboard, .contact {
+    padding: 20px;
+    text-align: center;
 }
 
 .spotify-dashboard {
-  padding: 20px;
-  background-color: lightgray;
+    background-color: #f7f7f7;
 }
 
 .contact {
-  padding: 20px;
-  background-color: darkgray;
+    background-color: #eaeaea;
 }
 
 form input, form textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
 }
 
 form button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 form button:hover {
-  background-color: red;
+    background-color: red;
 }
 
 .visitor-counter {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background-color: black;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 #dark-mode-toggle {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #dark-mode-toggle:hover {
-  background-color: red;
-  color: black;
+    background-color: red;
+    color: black;
 }
 
 .dark-mode {
-  background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 
 .dark-mode header {
-  background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 
 .dark-mode .contact {
-  background-color: grey;
+    background-color: grey;
 }
 
 #friends-only-btn {
-  display: block;
-  margin: 20px auto;
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+    display: block;
+    margin: 20px auto;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #friends-only-btn:hover {
-  background-color: red;
+    background-color: red;
 }
 
 .custom-cursor {
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
-  pointer-events: none;
-  z-index: 1000;
-  transition: transform 0.2s ease;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    transition: transform 0.2s ease;
 }
 
 /* Smooth Scroll */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 #loading {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: white;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid black;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid black;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Hide loading screen when content is loaded */
 body.loaded #loading {
-  display: none;
+    display: none;
 }

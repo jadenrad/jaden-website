@@ -1,64 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>444</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaden's Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="loading">
-    <div class="loader"></div>
-  </div>
-  <header>
-    <img src="images/profile.jpg" alt="profile picture" class="profile-pic">
-    <h1>jaden <span class="verified-badge">✔️</span></h1>
-    <p>i love money <a href="https://instagram.com/jadenmrad" target="_blank">instagram.com/jadenmrad</a></p>
-    <div class="social-media-icons">
-      <a href="https://instagram.com/jadenmrad">instagram</a>
-      <a href="https://twitter.com/4castles">twitter</a>
-      <a href="https://tiktok.com/@jadenstacks">tiktok</a>
+    <button id="dark-mode-toggle">dark mode</button>
+    <header>
+        <img src="images/profile.jpg" alt="profile picture" class="profile-pic">
+        <h1>jaden <span class="verified-badge">✔️</span></h1>
+        <p>i love money <a href="https://instagram.com/jadenmrad" target="_blank">instagram.com/jadenmrad</a></p>
+        <div class="social-media-icons">
+            <a href="https://instagram.com/jadenmrad">instagram</a>
+            <a href="https://twitter.com/4castles">twitter</a>
+            <a href="https://tiktok.com/@jadenstacks">tiktok</a>
+        </div>
+    </header>
+    <div class="posts">
+        <h2>posts</h2>
+        <!-- Add your posts here -->
     </div>
-  </header>
-  
-  <section class="posts">
-    <h2>posts</h2>
-    <div id="posts-container"></div>
-  </section>
-  
-  <section class="spotify-dashboard">
-    <h2>currently listening</h2>
-    <iframe src="https://open.spotify.com/embed/playlist/0g9jm0iJeohBYVdAWMMIln?utm_source=generator" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <h2>recently played</h2>
-    <div id="spotify-recent"></div>
-  </section>
-  
-  <section class="contact">
-    <h2>contact</h2>
-    <form>
-      <input type="text" placeholder="your name" required>
-      <input type="email" placeholder="your email" required>
-      <textarea placeholder="your message" required></textarea>
-      <button type="submit">send</button>
-    </form>
-  </section>
-  
-  <div class="visitor-counter">visitors: <span id="visitor-count">0</span></div>
-
-  <button id="dark-mode-toggle">dark mode</button>
-  <button id="friends-only-btn">friends only</button>
-  <div id="friends-only-section" style="display:none;">
-    <form id="friends-only-form">
-      <input type="text" id="pin-input" placeholder="enter 6-digit pin" required>
-      <button type="submit">submit</button>
-    </form>
-    <div id="friends-posts">
-      <h2>friends posts</h2>
-      <!-- Friends posts will be displayed here -->
+    <div class="spotify-dashboard">
+        <h2>currently listening</h2>
+        <iframe src="https://open.spotify.com/embed/playlist/0g9jm0iJeohBYVdAWMMIln" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
-  </div>
-
-  <script src="script.js"></script>
+    <div class="spotify-dashboard">
+        <h2>recently played</h2>
+        <!-- Add recently played Spotify widget here if needed -->
+    </div>
+    <div class="contact">
+        <h2>contact</h2>
+        <form>
+            <input type="text" name="name" placeholder="your name">
+            <input type="email" name="email" placeholder="your email">
+            <textarea name="message" placeholder="your message"></textarea>
+            <button type="submit">send</button>
+        </form>
+    </div>
+    <button id="friends-only-btn">friends only</button>
+    <div id="friends-only-section" style="display:none;">
+        <form id="friends-only-form">
+            <input type="password" id="pin-input" placeholder="Enter PIN">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="loading" class="loader"></div>
+    <div class="visitor-counter">visitors: <span id="visitor-count">0</span></div>
+    <script src="script.js"></script>
 </body>
 </html>
